@@ -16,7 +16,7 @@
 
   - name: Download example-users.yml file.
     get_url:
-      url: https://is.gd/jy5uUX
+      url: https://is.gd/X0FMCK
       dest: /tmp/example-users.yml
       force: yes
 
@@ -199,7 +199,8 @@
     vars:
       users: []
       password:
-      configuration: https://is.gd/jy5uUX
+      configuration: https://is.gd/X0FMCK
+      expand: true
     failed_when: unified is variable_empty
 
   - name: Verify /home/speedy directory status.
@@ -253,6 +254,7 @@
       name: constrict0r.users
     vars:
       users: whitey
+      expand: false
     failed_when: unified is variable_empty
 
   - name: Verify /home/whitey directory status.
