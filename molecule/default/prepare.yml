@@ -1,0 +1,15 @@
+---
+- name: Prepare
+  hosts: all
+
+  tasks:
+  - name: Ensure requirements are installed.
+    apt:
+      name:
+        - emacs
+        - python-pip
+        - python-setuptools
+        - python3-pip
+        - python3-setuptools
+      state: present
+    become: true

@@ -1,0 +1,24 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: stretch
+    image: debian:9
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+  - name: buster
+    image: debian:10
+    volume_mounts:
+      - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
+provisioner:
+  name: ansible
+  lint:
+    name: ansible-lint
+verifier:
+  name: testinfra
+  lint:
+    name: flake8

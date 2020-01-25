@@ -1,0 +1,52 @@
+@startuml
+'Use plantuml to view this file as an image: http://plantuml.com'
+start
+
+skinparam monochrome true
+
+:Apply validations;
+
+if (validations passed?) then (yes)
+
+  :Set unified_b = password + loaded configuration;
+
+  :Set unified = users + loaded configuration;
+
+  :Set user_password = 1234;
+
+  if (unified_b not empty?) then (yes)
+    :Set user_password = (unified_b | last);
+  else (no)
+  endif
+
+  if (unified not empty?) then (yes)
+
+    repeat
+
+      if (user not exists?) then (yes)
+
+        if (user has item_password?) then (yes)
+          :Set user_password = item_password;
+        else (no)
+        endif
+
+        :Create user with user_password;
+
+      else (no)
+      endif
+
+      repeat
+        :Add user to group;
+      repeat while (group in item_groups)
+
+    repeat while (user in unified)
+
+  else (no)
+  endif
+
+else (no)
+  :Show validation errors;
+endif
+
+end
+@enduml

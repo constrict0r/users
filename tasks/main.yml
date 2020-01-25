@@ -1,0 +1,89 @@
+---
+- name: Display Role Details.
+  debug:
+    msg:
+      - '==================================================================='
+      - 'constrict0r.users'
+      - 'Handle users.'
+      - '==================================================================='
+
+- name: Handle users.
+  debug:
+    msg:
+      - '--------------------------------------------------------------------'
+      - 'Managing users ...'
+      - '--------------------------------------------------------------------'
+
+- name: Handle password variable.
+  debug:
+    msg:
+      - '....................................................................'
+      - 'Handling password variable ...'
+      - '....................................................................'
+
+- name: Se user_p as disabled account.
+  set_fact:
+    user_p: !
+
+- name: Set user_p = unified_b | last.
+  set_fact:
+    user_p: "{{ unified_b | last }}"
+  when:
+    - unified_b is not variable_empty
+    - unified_b is variable_collection
+
+- name: Create users on unified_collection - item - user_p.
+  user:
+    name: "{{ item }}"
+    password: "{{ user_p | regex_replace('', '') | password_hash('sha512') }}"
+    update_password: on_create
+  with_items: "{{ unified }}"
+  become: true
+  when:
+    - not ansible_check_mode
+    - item is not variable_empty
+    - item.item_name is not defined
+
+- name: Create users on unified_collection - item_name - user_p.
+  user:
+    name: "{{ item.item_name }}"
+    password:
+      "{{ user_p | regex_replace('', '') | password_hash('sha512') }}"
+    update_password: on_create
+  with_items: "{{ unified }}"
+  become: true
+  when:
+    - not ansible_check_mode
+    - unified is not variable_empty
+    - item is not variable_empty
+    - item.item_name is defined
+    - item.item_name is not variable_empty
+    - item.item_pass is not defined
+
+- name: Create users on unified_collection - item_name - item_pass.
+  user:
+    name: "{{ item.item_name }}"
+    password:
+      "{{ item.item_pass | regex_replace('', '') | password_hash('sha512') }}"
+    update_password: on_create
+  with_items: "{{ unified }}"
+  become: true
+  when:
+    - not ansible_check_mode
+    - item.item_name is defined
+    - item.item_name is not variable_empty
+    - item.item_pass is defined
+    - item.item_pass is not variable_empty
+
+- name: Add users to groups - item_name - item_groups.
+  user:
+    name: "{{ item.item_name }}"
+    groups: "{{ item.item_groups }}"
+  with_items: "{{ unified }}"
+  become: true
+  when:
+    - not ansible_check_mode
+    - item.item_name is defined
+    - item.item_name is not variable_empty
+    - item.item_groups is defined
+    - item.item_groups is not variable_empty
