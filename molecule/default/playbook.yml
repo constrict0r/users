@@ -3,5 +3,5 @@
   hosts: all
   roles:
     - role: users
-      configuration: https://is.gd/jy5uUX
+      configuration: https://is.gd/X0FMCK
       users: [mary, jhon]
