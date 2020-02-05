@@ -24,3 +24,4 @@ This role performs the following actions:
 
 If an user has a **item_pass** or **item_groups** attributes defined, then it
 must have a non-empty **item_name** attribute defined too.
+
