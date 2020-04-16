@@ -31,7 +31,7 @@
 
   roles:
     - role: users
-      configuration: https://is.gd/X0FMCK
+      configuration: https://is.gd/FqHhAt
 
   post_tasks:
     - name: Run verification tests.
