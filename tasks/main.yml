@@ -75,15 +75,15 @@
     - item.item_pass is defined
     - item.item_pass is not variable_empty
 
-- name: Add users to groups - item_name - item_groups.
+- name: Add users to groups - item_name - item_group.
   user:
     name: "{{ item.item_name }}"
-    groups: "{{ item.item_groups }}"
+    groups: "{{ item.item_group }}"
   with_items: "{{ unified }}"
   become: true
   when:
     - not ansible_check_mode
     - item.item_name is defined
     - item.item_name is not variable_empty
-    - item.item_groups is defined
-    - item.item_groups is not variable_empty
+    - item.item_group is defined
+    - item.item_group is not variable_empty

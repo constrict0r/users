@@ -2,11 +2,12 @@
 # Example configuration.
 
 users:
+  - mary
   - molly
   - speedy
   - item_name: phil
     item_pass: bluephil
   - item_name: philly
-    item_groups: sudo
+    item_group: sudo
 
 password: 4321

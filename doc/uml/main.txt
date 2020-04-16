@@ -37,7 +37,7 @@ if (validations passed?) then (yes)
 
       repeat
         :Add user to group;
-      repeat while (group in item_groups)
+      repeat while (group in item_group)
 
     repeat while (user in unified)
 
