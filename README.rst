@@ -189,7 +189,7 @@ This variable is empty by default.
            - jhon
 
    # To a playbook from terminal.
-   ansible-playbook -i tests/inventory tests/test-playbook.yml -K -e \
+   ansible-playbook -i inventory my-playbook.yml -K -e \
        "{users: [mary, jhon]}"
 
 
@@ -217,7 +217,7 @@ This variable defaults to 1234.
          password: 4321
 
    # To a playbook from terminal.
-   ansible-playbook -i tests/inventory tests/test-playbook.yml -K -e \
+   ansible-playbook -i inventory my-playbook.yml -K -e \
        "password=4321"
 
 
