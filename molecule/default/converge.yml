@@ -11,6 +11,13 @@
           - 'Pre tasks'
           - '==============================================================='
 
+    - name: Update APT cache.
+      command: apt update
+      register: result
+      retries: 2
+      until: result is success
+      changed_when: false
+
     - name: Ensure Python requirements installed.
       apt:
         name:
