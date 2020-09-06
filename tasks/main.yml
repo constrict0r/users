@@ -38,7 +38,6 @@
     password: "{{ user_p | regex_replace('', '') | password_hash('sha512') }}"
     update_password: on_create
   with_items: "{{ unified }}"
-  become: true
   when:
     - not ansible_check_mode
     - item is not variable_empty
@@ -51,7 +50,6 @@
       "{{ user_p | regex_replace('', '') | password_hash('sha512') }}"
     update_password: on_create
   with_items: "{{ unified }}"
-  become: true
   when:
     - not ansible_check_mode
     - unified is not variable_empty
@@ -67,7 +65,6 @@
       "{{ item.item_pass | regex_replace('', '') | password_hash('sha512') }}"
     update_password: on_create
   with_items: "{{ unified }}"
-  become: true
   when:
     - not ansible_check_mode
     - item.item_name is defined
@@ -80,7 +77,6 @@
     name: "{{ item.item_name }}"
     groups: "{{ item.item_group }}"
   with_items: "{{ unified }}"
-  become: true
   when:
     - not ansible_check_mode
     - item.item_name is defined
